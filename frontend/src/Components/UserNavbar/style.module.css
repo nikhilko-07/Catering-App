@@ -1,0 +1,156 @@
+.container{
+    border-bottom: 1px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10rem;
+    height: 10vh;
+    color: #65CCB7;
+    font-family: "Gilroy";
+    font-family: "Permanent Marker", cursive;
+    font-style: normal;
+}
+.headerInfo{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+}
+.headerInfo > button{
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+    width: 80px;
+}
+.Btns{
+    border: 1px solid rgb(187, 187, 187);
+    border-radius: 100px;
+    padding-top: 1rem;
+    height: 45px;
+    width: 225px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logoutBtn{
+    padding-bottom: 5%;
+    border-left: 1px solid rgb(187, 187, 187);
+    padding-left: 1rem;
+    cursor: pointer;
+}
+
+/* I Phone 7 */
+@media (min-width: 0px) and (max-width: 320px){
+    .container{
+        padding: 1rem 1rem;
+    }
+    .Btns{
+        height: 30px;
+        padding-bottom:2%;
+        width: 150px;
+    }
+    .hey{
+        font-size: 1rem;
+    }
+    .logoutBtn{
+        font-size: 1rem;
+    }
+
+}
+/* NORMAL PHONE */
+@media (min-width: 321px) and (max-width: 375px){
+    .container{
+        padding: 2rem 2rem;
+    }
+    .Btns{
+        height: 40px;
+        padding-bottom:2%;
+        width: 150px;
+    }
+    .hey{
+        font-size: 1rem;
+    }
+    .logoutBtn{
+        font-size: 1rem;
+    }
+}
+/* I PHONE 13 ONE PLUS*/
+@media (min-width: 376px) and (max-width: 425px){
+    .container{
+        padding: 2rem 2rem;
+    }
+    .Btns{
+        height: 40px;
+        padding-bottom:2%;
+        width: 150px;
+    }
+    .hey{
+        font-size: 1rem;
+    }
+    .logoutBtn{
+        font-size: 1rem;
+    }
+}
+
+/* I PHONE 13 MAX */
+@media (min-width: 426px) and (max-width: 767px) {
+    .container{
+        padding: 2rem 2rem;
+    }
+    .logo{
+        font-size: 2.5rem;
+    }
+    .Btns{
+        height: 40px;
+        padding-bottom:2%;
+        width: 180px;
+    }
+    .hey{
+        font-size: 1.25rem;
+    }
+    .logoutBtn{
+        font-size: 1.25rem;
+    }
+}
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px){
+    .container{
+        padding: 0 6rem;
+    }
+    .logo{
+        font-size: 2.5rem;
+    }
+    .Btns{
+        height: 60px;
+        padding-bottom:2%;
+        width: 250px;
+    }
+    .hey{
+        font-size: 2rem;
+    }
+    .logoutBtn{
+        font-size: 2rem;
+    }
+}
+/* Foldable Mobile */
+@media (min-width: 1024px) and (max-width: 1439px){
+    .container{
+        padding: 0 6rem;
+        height: 15vh;
+    }
+    .logo{
+        font-size: 2.5rem;
+    }
+    .Btns{
+        height: 60px;
+        padding-bottom:2%;
+        width: 250px;
+    }
+    .hey{
+        font-size: 2rem;
+    }
+    .logoutBtn{
+        font-size: 2rem;
+    }
+}

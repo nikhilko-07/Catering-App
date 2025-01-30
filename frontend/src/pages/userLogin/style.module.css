@@ -1,0 +1,186 @@
+.container{
+    border-top: 1px solid rgb(179, 179, 179);
+    height: 90vh;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    color: #65CCB7;
+    font-family: "Gilroy";
+    font-family: "Permanent Marker", cursive;
+    font-style: normal;
+    background-color: white;
+}
+.error{
+    color: red;
+}
+.wrapper{
+    border: 1px solid rgb(179, 179, 179);
+    border-radius: 10px;
+    height: 50%;
+    width: 350px;
+}
+.registerHeader{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+.registerMethod{
+    display: grid;
+    padding: 0 1rem 0 1rem;
+}
+.registerMethod > input{
+    height: 20px;
+    color: #65CCB7;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+}
+.registerMethod > input:focus{
+    outline: none;
+}
+.loginMethod{
+    padding: 0 1rem 0 1rem ;
+    display: grid;
+}
+.loginMethod > input{
+    height: 20px;
+    color: #65CCB7;
+    font-size: 1rem;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+}
+.loginMethod > input:focus{
+    outline: none;
+}
+.registerBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+
+}
+.registerBtn > button{
+    height: 40px;
+    width: 80px;
+    background-color: #65CCB7;
+    border: none;
+    color: white;
+    border-radius: 10px;
+}
+.methodChange{
+    text-align: center;
+    font-size: 1.2rem;
+}
+/* I Phone 7 */
+@media (min-width: 0px) and (max-width: 320px){
+    .container{
+        height: 110vh;
+    }
+    .wrapper{
+        width: 300px;
+        height: 85%;
+    }
+    .registerMethod > input{
+        width: 230px;
+    }
+    .registerBtn{
+        height: 40px;
+    }
+    .loginMethod > input {
+        width: 230px;
+    }
+}
+
+/* NORMAL PHONE */
+@media (min-width: 321px) and (max-width: 375px){
+    .registerHeader{
+        padding: 0;
+    }
+    .wrapper{
+        width: 300px;
+        height: 70%;
+    }
+    .registerMethod > input{
+        width: 230px;
+    }
+    .registerBtn{
+        height: 40px;
+    }
+    .loginMethod > input {
+        width: 230px;
+    }
+}
+
+
+/* I PHONE 13 ONE PLUS*/
+@media (min-width: 376px) and (max-width: 425px) {
+    .registerHeader{
+        padding: 0;
+    }
+    .wrapper{
+        width: 300px;
+        height: 65%;
+    }
+    .registerMethod > input{
+        width: 230px;
+    }
+    .registerBtn{
+        height: 40px;
+    }
+    .loginMethod > input {
+        width: 230px;
+    }
+}
+
+/* I PHONE 13 MAX */
+@media (min-width: 426px) and (max-width: 767px){
+    .registerHeader{
+        padding: 0;
+    }
+    .wrapper{
+        width: 300px;
+        height: 70%;
+    }
+    .registerMethod > input{
+        width: 230px;
+    }
+    .registerBtn{
+        height: 40px;
+    }
+    .loginMethod > input {
+        width: 230px;
+    }
+}
+
+/* Foldable Mobile */
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .registerHeader{
+        padding: 0;
+    }
+    .wrapper{
+        width: 350px;
+        height: 85%;
+    }
+    .registerBtn{
+        height: 40px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

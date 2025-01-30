@@ -1,0 +1,190 @@
+.container{
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid rgb(179, 179, 179);
+    color: #65CCB7;
+    font-family: "Gilroy";
+    font-family: "Permanent Marker", cursive;
+    font-style: normal;
+}
+.registerContainer{
+    height: 70%;
+    width: 450px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    color: #65CCB7;
+    font-family: "Gilroy";
+    font-family: "Permanent Marker", cursive;
+    font-style: normal;
+    border: 1px solid rgb(179, 179, 179);
+}
+.header{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.inputRow > input{
+    width: 400px;
+    height: 50px;
+    padding: 1rem;
+    color: #65CCB7;
+    margin: 1rem;
+    font-family: "Gilroy";
+    font-family: "Permanent Marker", cursive;
+    font-style: normal;
+}
+.inputRow > input:focus{
+    outline: none;
+}
+.inputContainer > input{
+    width: 400px;
+    height: 50px;
+    color: #65CCB7;
+    padding: 1rem;
+    font-family: "Gilroy";
+    font-family: "Permanent Marker", cursive;
+    font-style: normal;
+    margin: 1rem;
+}
+.inputContainer > input:focus{
+    outline: none;
+}
+.btnContainer{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btnContainer >  button{
+    width: 80px;
+    color: white;
+    font-family: "Gilroy";
+    font-family: "Permanent Marker", cursive;
+    font-style: normal;
+    height: 40px;
+    font-size: 15px;
+    border: none;
+    background-color: #65CCB7;
+    border-radius: 10px;
+}
+.loginContainer{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+/* I Phone 7 */
+@media (min-width: 0px) and (max-width: 320px) {
+    .container{
+        height: 110vh;
+    }
+    .registerContainer{
+        height: 450px;
+        width: 250px;
+    }
+    .inputRow > input{
+        height: 40px;
+        width: 200px;
+
+    }
+    .inputContainer > input{
+        height: 40px;
+        width: 200px;
+    }
+    .btnContainer{
+        height: 40px;
+    }
+    .loginContainer > h4{
+        font-size: 1rem;
+        width: 50%;
+    }
+}
+
+
+/* NORMAL PHONE */
+@media (min-width: 321px) and (max-width: 375px){
+    .registerContainer{
+        height: 450px;
+        width: 250px;
+    }
+    .inputRow > input{
+        height: 40px;
+        width: 200px;
+
+    }
+    .inputContainer > input{
+        height: 40px;
+        width: 200px;
+    }
+    .btnContainer{
+        height: 40px;
+    }
+    .loginContainer > h4{
+        font-size: 1rem;
+        width: 50%;
+    }
+}
+/* I PHONE 13 ONE PLUS*/
+@media (min-width: 376px) and (max-width: 425px) {
+    .registerContainer{
+        height: 450px;
+        width: 350px;
+    }
+    .inputRow > input{
+        height: 40px;
+        width: 300px;
+
+    }
+    .inputContainer > input{
+        height: 40px;
+        width: 300px;
+    }
+    .btnContainer{
+        height: 40px;
+    }
+    .loginContainer > h4{
+        font-size: 1rem;
+        width: 50%;
+    }
+}
+/* I PHONE 13 MAX */
+@media (min-width: 426px) and (max-width: 767px) {
+    .registerContainer{
+        height: 450px;
+        width: 350px;
+    }
+    .inputRow > input{
+        height: 40px;
+        width: 300px;
+
+    }
+    .inputContainer > input{
+        height: 40px;
+        width: 300px;
+    }
+    .btnContainer{
+        height: 40px;
+    }
+    .loginContainer > h4{
+        font-size: 1rem;
+        width: 50%;
+    }
+}
+
+
+/* Foldable Mobile */
+@media (min-width: 1024px) and (max-width: 1439px){
+    .container{
+        height: 120vh;
+    }
+}
+
+
+
+

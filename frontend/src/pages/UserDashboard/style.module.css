@@ -1,0 +1,31 @@
+.container{
+    display: flex;
+    border-top: 0.5px solid rgb(179, 179, 179);
+    height: 90vh;   
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.wrapper{
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.card{
+    width: 100%;
+    margin: 1rem;
+}
+.card > img{
+    height: 250px;
+    width: 250px;
+    object-fit: cover;
+}
+.postedBy{
+    display: flex;
+    align-items: center;
+    color: dimgray;
+}

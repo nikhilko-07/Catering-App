@@ -1,0 +1,122 @@
+.container {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 88vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #65CCB7;
+    font-family: "Gilroy";
+    font-family: "Permanent Marker", cursive;
+    font-style: normal;
+    border-top: 1px solid rgb(187, 187, 187);
+    gap: 1rem;
+}
+.adminContainer{
+    border: 1px solid rgb(187, 187, 187);
+    height: 40%;
+    width: 300px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+.userContainer{
+    border: 1px solid rgb(187, 187, 187);
+    height: 40%;
+    width: 300px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+.btnContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btnContainer > button{
+    border: none;
+    background-color: #65CCB7;
+    color: white;
+    border-radius: 10px;
+}
+
+/* I Phone 7 */
+@media (min-width: 0px) and (max-width: 320px){
+    .container{
+        display: grid;
+        height: 100vh;
+        gap: 0;
+    }
+    .adminContainer{
+        height: 80%;
+    }
+    .userContainer{
+        height: 80%;
+    }
+}
+
+/* NORMAL PHONE */
+@media (min-width: 321px) and (max-width: 375px){
+    .container{
+        display: grid;
+        gap: 0;
+    }
+    .adminContainer{
+        height: 60%;
+    }
+    .userContainer{
+        height: 60%;
+    }
+}
+
+
+/* I PHONE 13 ONE PLUS*/
+@media (min-width: 376px) and (max-width: 425px){
+    .container{
+        display: grid;
+        gap: 0;
+        height: 80vh;
+    }
+    .adminContainer{
+        height: 60%;
+    }
+    .userContainer{
+        height: 60%;
+    }
+}
+
+
+/* I PHONE 13 MAX */
+@media (min-width: 426px) and (max-width: 767px){
+    .container{
+        display: grid;
+        gap: 0;
+        height: 80vh;
+    }
+    .adminContainer{
+        height: 60%;
+    }
+    .userContainer{
+        height: 60%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
