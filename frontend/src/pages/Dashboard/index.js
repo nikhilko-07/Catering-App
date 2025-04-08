@@ -31,8 +31,8 @@ export default function Dashboard() {
 
               <div className={style.mainContainer}>
                   <div className={style.header}>
-                      <h2>Speakers</h2>
-                      <h6>Enjoy rich, clear sound with our speaker, perfect for music, movies, and gaming.</h6>
+                      <h2>Best Food</h2>
+                      <h6>From sizzling street food to gourmet delicacies, enjoy all types of delicious cuisine crafted to satisfy every craving and delight every taste bud.</h6>
                   </div>
                   <div className={style.container}>
                       {productFetched ? console.log(fetchedProducts.product) : "Loading..."}

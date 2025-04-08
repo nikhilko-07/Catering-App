@@ -102,8 +102,7 @@ export default function UserDashboard(){
                 />
 
                     {name.length > 0 && description.length > 0 && discountedprice.length > 0 && price.length > 0 ?   <div  onClick={async ()=>{
-                       await handleUpload
-                        dispatch(getuserProduct({usertoken:localStorage.getItem("usertoken")}))
+                       await handleUpload()
                     }}  className={style.sendBtn}>
                         Send
                     </div>  : null }

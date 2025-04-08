@@ -13,7 +13,7 @@ export default function NavbarComponent(){
     return(
         <div className={styles.container}>
             <div>
-            <h5 onClick={()=>{router.push("/")}}> Catering Reservation & <br/> Ordering System</h5>
+            <h5 onClick={()=>{router.push("/")}}> Catering System</h5>
             </div>
             <div className={styles.links}>
 
