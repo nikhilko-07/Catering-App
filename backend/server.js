@@ -22,7 +22,7 @@ app.get("/check", (req, res) => {
 
 const database = async () => {
     try {
-        await mongoose.connect(MONGO URL);
+        await mongoose.connect("mongodb+srv://Nikhil:Nikhil%40123@cluster0.sv8e3.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
         console.log("Database connected successfully");
     } catch (err) {
         console.error("Database connection error:", err);
