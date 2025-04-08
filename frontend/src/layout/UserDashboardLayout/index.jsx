@@ -11,11 +11,11 @@ export default function UserDashboardLayout({children}) {
 
 
     useEffect(() => {
-        if(localStorage.getItem("Usertoken") === null) {
+        if(localStorage.getItem("usertoken") === null) {
             router.push("/userLogin");
         }
         dispatch(setuserTokenisThere())
-        dispatch(getUserInfo({Usertoken: localStorage.getItem("Usertoken")}))
+
     }, []);
 
     return (<>{children}</>)

@@ -3,9 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import {
     registerAdmin,
     loginAdmin,
-    getOwnProfile,
-    getProfilByID,
-    getProfilebyUsername
+    getOwnProfile, getallproducts, adminCart, getadminOrders, CreateAdminCart, DeleteCart, productInfo, createorder,
 } from "@/config/redux/action/adminAction";
 
 const initialState = {
@@ -18,7 +16,14 @@ const initialState = {
     message: "",
     profileFetched: false,
     profileGet:false,
-    profileFetcher:false
+    productFetched: false,
+    fetchedProducts: [],
+    cartFetched: false,
+    fetchedCart: [],
+    ordersFetched: false,
+    fetchedOrders: [],
+    productInfoFetched: false,
+    infoOfProducts: [],
 }
 
 const adminSlice = createSlice({
@@ -76,24 +81,94 @@ const adminSlice = createSlice({
                 state.profileFetched = true;
                 state.admin = action.payload.profile;
             })
-            .addCase(getProfilByID.fulfilled,(state, action)=>{
-                state.isLoading = false;
+            .addCase(getallproducts.pending,(state)=>{
+                state.isLoading = true;
+                state.message = "Loading data"
                 state.isError = false;
-                state.profileGet = true
-                state.isSuccess = true;
-                state.postInfo = action.payload;
             })
-            .addCase(getProfilebyUsername.fulfilled,(state, action)=>{
+            .addCase(getallproducts.fulfilled,(state, action)=>{
                 state.isLoading = false;
                 state.isError = false;
                 state.isSuccess = true;
-                state.profileFetcher = true;
-                state.Profile = action.payload;
+                state.productFetched = true;
+                state.fetchedProducts = action.payload;
+            })
+            .addCase(adminCart.rejected,(state, action)=>{
+                state.isLoading = true;
+                state.isError = false;
+            })
+            .addCase(adminCart.fulfilled,(state, action)=>{
+                state.isLoading = false;
+                state.isError = false;
+                state.isSuccess = true;
+                state.cartFetched = true;
+                state.fetchedCart = action.payload;
+            })
+            .addCase(getadminOrders.rejected,(state, action)=>{
+                state.isLoading = false;
+                state.message = action.payload;
+                state.isError = true;
+            })
+            .addCase(getadminOrders.fulfilled,(state, action)=>{
+                state.isLoading = false;
+                state.isError = false;
+                state.isSuccess = true;
+                state.message = action.payload;
+                state.ordersFetched = true;
+                state.fetchedOrders = action.payload;
+            })
+            .addCase(CreateAdminCart.pending,(state)=>{
+                state.isLoading = true;
+                state.isError = false;
+            })
+            .addCase(CreateAdminCart.rejected,(state, action)=>{
+                state.isLoading = false;
+                state.isError = true;
+                state.isSuccess = false;
+                state.message = action.payload;
+            })
+            .addCase(CreateAdminCart.fulfilled,(state, action)=>{
+                state.isLoading = false;
+                state.isError = false;
+                state.isSuccess = true;
+                state.message = action.payload;
+            })
+            .addCase(DeleteCart.rejected,(state, action)=>{
+                state.isLoading = false;
+                state.isError = true;
+            })
+            .addCase(DeleteCart.fulfilled,(state, action)=>{
+                state.isLoading = false;
+                state.isError = false;
+                state.isSuccess = true;
+                state.message = action.payload;
+            })
+            .addCase(productInfo.pending,(state)=>{
+                state.isLoading = true;
+                state.isError = false;
+            })
+            .addCase(productInfo.fulfilled,(state,action)=>{
+                state.isLoading = false;
+                state.isError = false;
+                state.isSuccess = true;
+                state.productInfoFetched = true;
+                state.infoOfProducts = action.payload;
+            })
+            .addCase(createorder.rejected,(state, action)=>{
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
+            })
+            .addCase(createorder.fulfilled,(state,action)=>{
+                state.isLoading = false;
+                state.isError = false;
+                state.isSuccess = true;
+                state.message = action.payload;
             })
 
     }
 })
 
-export const {reset, setTokenisthere, setIsTokenNotThere} = adminSlice.actions;
+export const {reset, setTokenisthere} = adminSlice.actions;
 
 export default adminSlice.reducer;

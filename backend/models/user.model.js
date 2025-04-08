@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    Usertoken:{
+    usertoken:{
         type: String,
         default:''
     }

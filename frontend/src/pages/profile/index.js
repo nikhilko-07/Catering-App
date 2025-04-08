@@ -42,32 +42,34 @@ export default function Profile() {
                     {!edit ? (
                         <div className={style.wrapperDiv}>
                             {adminReducer.profileFetched && (
-                                <div className={style.card} style={{ width: "18rem" }}>
+                                <div className={style.card} >
                                     <label htmlFor="profilePictureUpload">
                                         <div className={style.profileImg}>
 
                                         <img
                                             src={`${BASE_URL}/${adminReducer.admin.adminId.profilePicture}`}
-                                            className={`card-img-top`}
                                             alt="Profile"
                                         />
                                         </div>
                                     </label>
+                                    <div className={style.cardInfo}>
+
                                     <div  className="card-body">
                                         <input hidden={true} onChange={updateProfilePic} type="file" id="profilePictureUpload" />
-                                        <h5 className="card-title" style={{color:" #65CCB7"}}>{adminReducer.admin.adminId.name}</h5>
-                                        <p className="card-text" style={{color:" #65CCB7"}}>{adminReducer.admin.bio}</p>
+                                        <h5 className="card-title" >Name: {adminReducer.admin.adminId.name}</h5>
+                                        <p className="card-text" >Bio: {adminReducer.admin.bio}</p>
                                     </div>
                                     <ul className="list-group list-group-flush">
-                                        <li style={{color:" #65CCB7"}} className={`list-group-item ${style.address}`}>{adminReducer.admin.address}</li>
+                                        <li  className={` ${style.address}`}>Address: {adminReducer.admin.address}</li>
                                     </ul>
                                     <div className={ style.contactInfo}>
-                                        <a className="card-link">{adminReducer.admin.adminId.email}</a>
-                                        <a className="card-link">{adminReducer.admin.mobile}</a>
+                                        <a className="card-link">Email: {adminReducer.admin.adminId.email}</a>
+                                        <a className="card-link">Mobile: {adminReducer.admin.mobile}</a>
                                     </div>
                                              <div className={style.editBtn}>
                                              <button onClick={()=>setEdit(true)}>Edit</button>
                                              </div>
+                                    </div>
                                 </div>
                             )}
                         </div>

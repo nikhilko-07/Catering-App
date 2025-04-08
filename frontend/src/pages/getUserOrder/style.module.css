@@ -1,0 +1,90 @@
+.container{
+    background-color: black;
+    color: white;
+    display: grid;
+    place-items: center;
+}
+.mainContainer{
+    margin-top: 0.5rem;
+    width: 80%;
+    border: 1px solid white;
+}
+.order{
+    display: flex;
+    gap: 2rem;
+    padding: 1rem;
+}
+.imgContainer > img{
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+.address {
+    border: none;
+    outline: none;
+    resize: none;
+    background-color: black;
+    color: white;
+}
+.productInfo{
+    padding-left: 1rem;
+    border-left: 1px solid gray;
+}
+.btn{
+    border: 1px solid white;
+    background-color: black;
+    color: white;
+    height: 3rem;
+    width: 8rem;
+    border-radius: 0.5rem;
+}
+/* I Phone 7 */
+@media (min-width: 0px) and (max-width: 320px) {
+   .order{
+       display: grid;
+       gap: 0;
+       place-items: center;
+   }
+}
+/* NORMAL PHONE */
+@media (min-width: 321px) and (max-width: 375px) {
+    .order{
+        display: grid;
+        gap: 0;
+        place-items: center;
+    }
+
+}
+
+/* I PHONE 13 ONE PLUS*/
+@media (min-width: 376px) and (max-width: 425px) {
+    .order{
+        display: grid;
+        gap: 0;
+        place-items: center;
+    }
+
+}
+/* I PHONE 13 MAX */
+@media (min-width: 426px) and (max-width: 767px) {
+    .order{
+        display: grid;
+        gap: 0;
+        place-items: center;
+    }
+
+}
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .mainContainer{
+        width: 90%;
+    }
+
+}
+/* Foldable Mobile */
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .mainContainer{
+        width: 90%;
+    }
+
+}

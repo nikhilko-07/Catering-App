@@ -1,13 +1,12 @@
 import React from "react";
 import {useRouter} from "next/router";
-import AdminLayout from "@/layout/AdminLayout";
 import style from "./index.module.css";
 
 export default function Home(){
 
   const router = useRouter();
 
-  return(<AdminLayout>
+  return(
     <div className={style.container} >
         <div className={style.adminContainer}>
             <h4>ADMIN DASHBOARD</h4>
@@ -31,6 +30,5 @@ export default function Home(){
           </div>
       </div>
 
-    </div>
-  </AdminLayout>)
+    </div>)
 }

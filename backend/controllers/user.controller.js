@@ -1,8 +1,8 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
-import Profile from "../models/profile.model.js";
-import Admin from "../models/admin.model.js";
+import Product from "../models/product.model.js";
+import Order from "../models/Order.model.js";
 
 export const registerUser = async (req, res) => {
     try {
@@ -15,13 +15,13 @@ export const registerUser = async (req, res) => {
             return res.status(400).json({error: 'User already exists'});
         }
         const hashedPassword = await bcrypt.hash(password, 12);
-        const newuser = new User({
+        const newUser = new User({
             username,
             name,
             email,
             password: hashedPassword,
         })
-        await newuser.save();
+        await newUser.save();
         return res.status(201).json({message:" User successfully registered"});
 
     }catch(err){
@@ -43,62 +43,108 @@ export const loginUser = async (req, res) => {
         if(!isMatch){
             return res.status(400).json({error: 'Incorrect password'});
         }
-        const Usertoken = crypto.randomBytes(32).toString('hex');
-        await User.updateOne({_id: user._id}, {Usertoken})
-        return res.status(201).json({message:" User Login successfully", Usertoken});
+        const usertoken = crypto.randomBytes(32).toString('hex');
+        await User.updateOne({_id: user._id}, {usertoken})
+        return res.status(201).json({message:" User Login successfully", usertoken});
     }catch(err){
         return res.status(400).send({message: err.message});
     }
 }
 
-export const getAdminProfile = async (req, res) => {
+export const createProduct = async (req, res) => {
     try {
-        const { adminId } = req.query;
-
-        if (!adminId) {
-            return res.status(400).json({ error: 'Admin ID is required' });
+        const {usertoken} = req.body;
+        const user = await User.findOne({usertoken});
+        if (!user) {
+            res.status(400).json({message:"User not found"});
         }
+        const product = new Product({
+            userId: user._id,
+            name: req.body.name,
+            Price: req.body.price,
+            discountedPrice: req.body.discountedprice,
+            Description: req.body.description,
+            media: req.file ? req.file.filename : '',
+            fileTypes: req.file ? req.file.mimetype.split('/')[1] : '',
+        })
+        await product.save();
+        return res.status(201).json({message:"Product successfully saved"});
 
-        console.log(`Searching for admin with ID: ${adminId}`);
-        const admin = await Admin.findOne({ _id: adminId });
-        if (!admin) {
-            return res.status(404).json({ message: "Admin not found" });
-        }
-
-        console.log(`Searching for profile with ID: ${adminId}`);
-        const adminProfile = await Profile.findOne({ adminId: adminId });
-        if (!adminProfile) {
-            return res.status(404).json({ message: "Profile not found" });
-        }
-
-        // Exclude password and token from adminInfo
-        const { password, token, ...adminInfoWithoutSensitiveData } = admin.toObject();
-
-        return res.status(200).json({
-            adminProfile: adminProfile,
-            adminInfo: adminInfoWithoutSensitiveData
-        });
-    } catch (err) {
-        console.error('Error fetching admin profile:', err);
-        return res.status(500).send({ error: 'Server error' });
+    }catch(err) {
+        return res.status(400).json({message: err.message})
     }
 }
 
-export const getUserInfo = async (req, res) => {
+export const getUserProduct = async (req, res) => {
     try {
-        const {Usertoken} = req.query;
-        if(!Usertoken){
-            return res.status(400).json({error: 'User token is required'});
+        const {usertoken} = req.headers;
+        if(!usertoken){
+            console.log(usertoken);
+            // return res.status(400).json({error: 'UserToken is required'});
         }
-        const user = await User.findOne({Usertoken: Usertoken});
+        const user = await User.findOne({usertoken});
         if(!user){
             return res.status(400).json({error: 'User does not exist'});
         }
-        user.populate('_id', "name, email")
-        return res.json({userinfo : user});
+        const product = await Product.find({userId: user._id});
+        if(!product || product.length===0){
+            return res.status(400).json({error: 'You dont have any product'});
+        }
+        product.reverse();
+        return res.status(201).json({product});
     }catch(err){
-        return res.status(400).json({message: err.message});
+        return res.status(400).send({message: err.message});
     }
+}
+
+export const getUserOrders = async (req, res) => {
+    try {
+        const { usertoken } = req.headers;
+
+        if (!usertoken) {
+            return res.status(400).json({ error: 'User token is required' });
+        }
+        const user = await User.findOne({ usertoken });
+        if (!user) {
+            return res.status(400).json({ error: 'Invalid user token' });
+        }
+        const products = await Product.find({ userId: user._id });
+        if (!products.length) {
+            return res.status(400).json({ error: 'You do not have any products' });
+        }
+        const productIds = products.map(product => product._id);
+        const orders = await Order.find({ productId: { $in: productIds } }).populate("productId", "name media discountedPrice");
+        if (!orders.length) {
+            return res.status(400).json({ error: 'No orders found for your products' });
+        }
+        orders.reverse();
+        return res.status(200).json({ orders });
+
+    } catch (err) {
+        return res.status(500).json({ error: err.message });
+    }
+};
+
+export const changeStatus = async (req, res) => {
+    const {usertoken, orderid} = req.body;
+    if(!usertoken){
+        return res.status(400).json({error: 'Token is required'});
+    }
+    const user = await User.findOne({usertoken});
+    if (!user) {
+        return res.status(400).json({error: 'user is required'});
+    }
+    if(!orderid ){
+        return res.status(400).json({error: 'orderId is required'});
+    }
+    const order = await Order.findOne({_id: orderid});
+    if (!order) {
+        return res.status(400).json({error: 'order is required'});
+    }
+    order.status = true;
+    await order.save();
+
+    return res.status(200).json({message: 'Order status updated successfully', order,});
 }
 
 

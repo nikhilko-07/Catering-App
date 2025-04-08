@@ -18,17 +18,11 @@ export default function userLogin() {
     const dispatch = useDispatch();
     const userReducer = useSelector((state) => state.userReducer);
 
-    useEffect(() => {
-        if(userReducer.userLoggedIn){
-            router.push("/login");
-        }
-        dispatch(setuserTokenisThere)
-    }, []);
 
 
 
     useEffect(() => {
-        if(localStorage.getItem("Usertoken")){
+        if(localStorage.getItem("usertoken")){
             router.push("/UserDashboard");
         }
     },[])

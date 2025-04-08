@@ -1,9 +1,14 @@
-import Admin from "../models/admin.model.js";
+
 import bcrypt from "bcrypt";
 import crypto from "crypto";
 import multer from 'multer';
 const upload = multer({ dest: 'uploads/' });
 import Profile from "../models/profile.model.js";
+import Admin from "../models/admin.model.js";
+import Product from "../models/product.model.js";
+import Cart from "../models/cart.model.js";
+import User from "../models/user.model.js";
+import Order from "../models/Order.model.js";
 
 export const registerAdmin = async (req, res) => {
     try {
@@ -54,16 +59,12 @@ export const loginAdmin = async (req, res) => {
     }
 };
 
-
-// Assuming you are using Express.js
 export const getMyProfile = async (req, res) => {
     try {
-        const { token } = req.query;
-        console.log(token)
+        const token = req.headers.authorization?.split(" ")[1];
         if (!token) {
-            return res.status(400).json({ message: "Token is required" });
+            return res.status(400).json({token });
         }
-
         const admin = await Admin.findOne({ token: token });
         if (!admin) {
             return res.status(404).json({ message: "User not found" });
@@ -87,7 +88,6 @@ export const getMyProfile = async (req, res) => {
 
 export const uploadProfilePicture = async (req, res) => {
     try {
-        console.log(req.file); // Debugging: Check if file is received
         const { token } = req.body;
         const admin = await Admin.findOne({ token: token });
 
@@ -107,6 +107,7 @@ export const uploadProfilePicture = async (req, res) => {
         return res.status(400).json({ message: err.message });
     }
 };
+
 export const updateProfileInfo = async (req, res) => {
     try {
         const { token, ...newProfileData } = req.body;
@@ -129,48 +130,170 @@ export const updateProfileInfo = async (req, res) => {
     }
 }
 
-// Assuming you have already imported necessary modules like express, Admin, and Profile
-
-export const getProfileBasedOnUsername = async (req, res) => {
+export const getAllProducts = async (req, res) => {
     try {
-        const { username } = req.query;
-
-        if (!username) {
-            return res.status(400).json({ error: "Username is required" });
+        const { token } = req.headers;
+        if (!token) {
+            return res.status(400).send("No token");
         }
-
-        const admin = await Admin.findOne({ username }).select('-token -password');
-        if (!admin) {
-            return res.status(404).json({ error: "Admin not exists" });
+        const product = await Product.find();
+        if (!product) {
+            return res.status(400).send("No product");
         }
-        const profile = await Profile.findOne({adminId: admin})
+        product.reverse();
+        return res.json({product});
 
-        return res.json({ "profile": profile, admin });
-
-    } catch (err) {
-        console.error("Error fetching profile:", err); // Log the error for debugging
-        return res.status(500).json({ error: "Internal Server Error" });
-    }
-};
-
-
-export const getAdminById = async (req, res) => {
-    try {
-        const { adminId } = req.query; // Or use req.params if it's a path parameter
-
-        if (!adminId) {
-            return res.status(400).send("Admin ID is required");
-        }
-
-        // Use .select() to exclude the token field
-        const admin = await Admin.findById(adminId).select('-token -password');
-
-        if (!admin) {
-            return res.status(404).send("Admin not found");
-        }
-        return res.json({ admin });
-    } catch (error) {
-        console.error("Error fetching admin profile:", error);
-        return res.status(500).send("Internal server error");
+    }catch(err){
+        return res.status(400).send("No Products Found");
     }
 }
+
+export const createCart = async (req, res) => {
+    try {
+        const {token, productid} = req.headers;
+        if (!token) {
+            return res.status(400).send("Token is required");
+        }
+        const admin = await Admin.findOne({token});
+        if (!productid) {
+            return res.status(400).send("Productid is required");
+        }
+
+        const newCart = new Cart({
+            adminId : admin._id,
+            productId: productid
+        });
+        await newCart.save();
+        return res.json({ message: "successfully created cart" });
+
+    }catch(err){
+        return res.status(400).send(err.message);
+    }
+}
+
+export const getCart = async (req, res) => {
+    try {
+        const {token} = req.headers;
+        if (!token) {
+            return res.status(400).send("Token is required");
+        }
+        const admin = await Admin.findOne({token});
+        if (!admin) {
+            return res.status(400).send("User not found");
+        }
+        const getCart = await Cart.find({adminId:admin._id }).populate("productId" ,"name media Price discountedPrice").select("-adminId");
+        if (!getCart) {
+            return res.status(400).send("No cart found with user id");
+        }
+        getCart.reverse();
+        return res.json({getCart});
+    }catch(err){
+        return res.status(400).send("Error getting cart");
+    }
+}
+
+export const deleteCart = async (req, res) => {
+    try {
+        const {token, cartid} = req.headers;
+        if (!token) {
+            return res.status(400).send("Token is required");
+        }
+        const admin = await Admin.findOne({ token });
+        if (!admin) {
+            return res.status(400).send("User not found");
+        }
+        const cart = await Cart.findOne({_id: cartid});
+        if (!cart) {
+            return res.status(400).send("No cart found with user id");
+        }
+        if(cart.adminId.toString() !== admin._id.toString()) {
+            return res.status(400).send("Admin not found");
+        }
+        await Cart.deleteOne({_id: cart._id});
+        return res.json({ message: "successfully deleted" });
+
+    }catch(err){
+        return res.status(400).send("Token is required");
+    }
+}
+
+export const createOrder = async (req, res) => {
+    try {
+        const token = req.headers.authorization;
+        const { productid, name, address, phone, pincode} = req.headers;
+        if (!token) {
+            return res.status(400).send("Token is required");
+        }
+        const admin = await Admin.findOne({token });
+        if (!admin) {
+            return res.status(400).send("Token is required");
+        }
+        const product = await Product.findOne({_id: productid});
+        if (!product) {
+            return res.status(400).send("Productid is required");
+        }
+        const newOrder = new Order({
+            adminId:admin._id,
+            productId:product._id,
+            name:name,
+            address:address,
+            phone:phone,
+            pinCode:pincode,
+        })
+        await newOrder.save();
+        return res.json({ message: "successfully created order" });
+    }catch (err){
+        return res.status(400).send(err.message);
+    }
+}
+
+export const getMyOrders = async (req, res) => {
+    try {
+        const { token } = req.headers;
+        if (!token) {
+            return res.status(400).send("Token is required");
+        }
+        const admin = await Admin.findOne({token});
+        if (!admin) {
+            return res.status(400).send("Token is required");
+        }
+        const order = await Order.find({adminId: admin._id}).populate("productId", "name media Price discountedPrice").select("-adminId");
+        if (!order) {
+            return res.status(400).send("You haven't any orders yet");
+        }
+        order.reverse();
+        return res.json({order});
+    }catch(err){
+        return res.status(400).send("Token is required");
+    }
+}
+
+export const getProductInfo = async (req, res) => {
+    try {
+        const token = req.headers.authorization;
+        const { productid } = req.headers;
+
+        if (!token) {
+            return res.status(400).send("Token is required");
+        }
+
+        const admin = await Admin.findOne({ token });
+        if (!admin) {
+            return res.status(401).send("Unauthorized: Invalid token");
+        }
+
+        if (!productid) {
+            return res.status(400).send("Product ID is required");
+        }
+
+        const product = await Product.findOne({ _id: productid }).select("name media Price discountedPrice Description");
+        if (!product) {
+            return res.status(404).send("There is no product");
+        }
+
+        return res.json( product );
+    } catch (err) {
+        console.error("Error in getProductInfo:", err);
+        return res.status(500).send("Internal Server Error");
+    }
+};

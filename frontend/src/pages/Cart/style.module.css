@@ -1,0 +1,208 @@
+.container{
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+}
+.cartContainer{
+    width: 60%;
+    height: 100%;
+}
+.imgContainer > img{
+    object-fit: cover;
+    height: 200px;
+    width:  200px;
+}
+.price{
+    display: flex;
+    gap: 10px;
+    text-align: center;
+}
+.price > p{
+    text-decoration: line-through;
+    color: gray;
+    font-size: large;
+    font-weight: bold;
+}
+.cartItem{
+    border: 1px solid white;
+    display: flex;
+    gap: 2rem;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+.btns > button{
+    border: 1px solid white;
+    color: white;
+    background-color: black;
+    font-weight: bold;
+    height: 4vh;
+    width: 10vw;
+    border-radius: 0.4rem;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+/* I Phone 7 */
+@media (min-width: 0px) and (max-width: 320px) {
+    .container{
+        border: 1px solid white;
+        width: 100%;
+    }
+    .cartItem{
+        width: 100%;
+    }
+    .imgContainer > img{
+        width:  160px;
+        height: 160px;
+    }
+    .cartItem{
+       border: 1px solid white;
+        display: grid;
+        align-items: start;
+        justify-content: center;
+    }
+    .btns > button{
+        width: 60%;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+/* NORMAL PHONE */
+@media (min-width: 321px) and (max-width: 375px) {
+    .container{
+        border: 1px solid white;
+        width: 100%;
+    }
+    .cartItem{
+        width: 100%;
+    }
+    .imgContainer > img{
+        width:  160px;
+        height: 160px;
+    }
+    .cartItem{
+        border: 1px solid white;
+        display: grid;
+        align-items: start;
+        justify-content: center;
+    }
+    .btns > button{
+        width: 60%;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+/* I PHONE 13 ONE PLUS*/
+@media (min-width: 376px) and (max-width: 425px) {
+    .container{
+        border: 1px solid white;
+        width: 100%;
+    }
+    .cartItem{
+        width: 100%;
+    }
+    .imgContainer > img{
+        width:  160px;
+        height: 160px;
+    }
+    .cartItem{
+        border: 1px solid white;
+        display: grid;
+        align-items: start;
+        justify-content: center;
+    }
+    .btns > button{
+        width: 60%;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+/* I PHONE 13 MAX */
+@media (min-width: 426px) and (max-width: 767px) {
+    .container{
+        border: 1px solid white;
+        width: 100%;
+    }
+    .cartItem{
+        width: 100%;
+    }
+    .imgContainer > img{
+        width:  160px;
+        height: 160px;
+    }
+    .cartItem{
+        border: 1px solid white;
+        display: grid;
+        align-items: start;
+        justify-content: center;
+    }
+    .btns > button{
+        width: 60%;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .mainContainer{
+        height: 90vh;
+        align-items: center;
+    }
+    .container{
+        width: 100%;
+    }
+    .product{
+        display: flex;
+    }
+    .product > div{
+        width: 100%;
+        height: 100%;
+    }
+    .productImg{
+        height: 250px;
+        width:  250px;
+    }
+    .price{
+        font-size: 1rem;
+    }
+    .btns{
+        padding-bottom: 3.5rem;
+    }
+    .btns > button{
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+/* Foldable Mobile */
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .mainContainer{
+        height: 90vh;
+        align-items: center;
+    }
+    .container{
+        width: 100%;
+    }
+    .product{
+        display: flex;
+    }
+    .product > div{
+        width: 100%;
+        height: 100%;
+    }
+    .productImg{
+        height: 350px;
+        width:  350px;
+    }
+    .price{
+        font-size: 1rem;
+    }
+    .btns{
+        padding-bottom: 3.5rem;
+    }
+    .btns > button{
+        height: 40px;
+        font-size: 1rem;
+    }
+}

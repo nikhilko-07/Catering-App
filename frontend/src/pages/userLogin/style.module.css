@@ -4,11 +4,11 @@
     display: grid;
     justify-content: center;
     align-items: center;
-    color: #65CCB7;
+    color: white;
     font-family: "Gilroy";
     font-family: "Permanent Marker", cursive;
     font-style: normal;
-    background-color: white;
+    background-color: black;
 }
 .error{
     color: red;
@@ -32,7 +32,7 @@
 }
 .registerMethod > input{
     height: 20px;
-    color: #65CCB7;
+    color: black;
     font-size: 1rem;
     margin-bottom: 0.5rem;
     padding: 1rem;
@@ -46,7 +46,7 @@
 }
 .loginMethod > input{
     height: 20px;
-    color: #65CCB7;
+    color: black;
     font-size: 1rem;
     padding: 1rem;
     margin-bottom: 0.5rem;
@@ -64,9 +64,9 @@
 .registerBtn > button{
     height: 40px;
     width: 80px;
-    background-color: #65CCB7;
-    border: none;
+    background-color: black;
     color: white;
+    border: 1px solid white;
     border-radius: 10px;
 }
 .methodChange{

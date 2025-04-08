@@ -4,9 +4,8 @@
     align-items: center;
     justify-content: center;
     border-top: 1px solid rgb(179, 179, 179);
-    color: #65CCB7;
-    font-family: "Gilroy";
-    font-family: "Permanent Marker", cursive;
+    color: white;
+    background-color: black;
     font-style: normal;
 }
 .registerContainer{
@@ -15,9 +14,8 @@
     display: grid;
     align-items: center;
     justify-content: center;
-    color: #65CCB7;
-    font-family: "Gilroy";
-    font-family: "Permanent Marker", cursive;
+    color: white;
+    background-color: black;
     font-style: normal;
     border: 1px solid rgb(179, 179, 179);
 }
@@ -31,7 +29,7 @@
     width: 400px;
     height: 50px;
     padding: 1rem;
-    color: #65CCB7;
+    color: black;
     margin: 1rem;
     font-family: "Gilroy";
     font-family: "Permanent Marker", cursive;
@@ -43,7 +41,7 @@
 .inputContainer > input{
     width: 400px;
     height: 50px;
-    color: #65CCB7;
+    color: black;
     padding: 1rem;
     font-family: "Gilroy";
     font-family: "Permanent Marker", cursive;
@@ -68,8 +66,8 @@
     font-style: normal;
     height: 40px;
     font-size: 15px;
-    border: none;
-    background-color: #65CCB7;
+    border: 1px solid white;
+    background-color: black;
     border-radius: 10px;
 }
 .loginContainer{

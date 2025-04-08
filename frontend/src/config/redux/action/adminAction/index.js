@@ -5,7 +5,7 @@ export const registerAdmin = createAsyncThunk(
     "/register",
     async (admin, thunkAPI) => {
         try {
-            const response = await clientServer.post("/register", {
+            const response = await clientServer.post("/registerAdmin", {
                 email: admin.email,
                 password: admin.password,
                 name: admin.name,
@@ -21,7 +21,7 @@ export const loginAdmin = createAsyncThunk(
     "/login",
     async (admin, thunkAPI) => {
         try {
-            const response = await clientServer.post("/login", {
+            const response = await clientServer.post("/loginAdmin", {
                 email: admin.email,
                 password: admin.password
             });
@@ -44,8 +44,8 @@ export const getOwnProfile = createAsyncThunk(
     async (admin, thunkAPI) => {
         try {
             const response = await clientServer.get("/get_My_Profile", {
-                params: {
-                    token: admin.token
+                headers: {
+                    Authorization: `Bearer ${admin.token}`
                 }
             });
             return thunkAPI.fulfillWithValue(response.data);
@@ -67,7 +67,7 @@ export const updateProfilePicture = createAsyncThunk(
                     "Content-Type": "multipart/form-data"
                 }
             });
-            return response.data;
+            return thunkAPI.fulfillWithValue(response.data);
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
         }
@@ -76,38 +76,151 @@ export const updateProfilePicture = createAsyncThunk(
 export const updateProfileAdminInfo = createAsyncThunk(
     "/admin/updateProfileAdminInfo",
     async (admin, thunkAPI) => {
-        const response = await clientServer.post("/updateProfileInfo", {
+        try {
+            const response = await clientServer.post("/updateProfileInfo", {
                 token: admin.token,
                 address: admin.address,
                 bio: admin.bio,
                 mobile: admin.mobile,
                 name: admin.name
-        })
+            })
+            return thunkAPI.fulfillWithValue(response.data);
+        }catch (err){
+            return thunkAPI.rejectWithValue(err.response.data);
+        }
     }
 )
 
-export const getProfilByID = createAsyncThunk(
-    "/admin/getProfilByID",
-    async ({ adminId }, thunkAPI) => {
+export const getallproducts = createAsyncThunk(
+    "/getallproducts",
+    async (admin, thunkAPI) => {
         try {
-            const response = await clientServer.get("/getProfileById", {
-                params: { adminId }
+            const response = await clientServer.get("/getAllProducts", {
+                headers:{
+                    token: admin.token
+                }
+            })
+            return thunkAPI.fulfillWithValue(response.data);
+        }catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+)
+
+export const adminCart = createAsyncThunk(
+    "/adminCart",
+    async (admin, thunkAPI) => {
+        try {
+            const response = await clientServer.get("/getCart", {
+                headers: {
+                    token: admin.token
+                }
+            })
+            return thunkAPI.fulfillWithValue(response.data);
+        }catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+)
+
+export const CreateAdminCart = createAsyncThunk(
+    "/createAdminCart",
+    async (admin, thunkAPI) => {
+        try {
+            const response = await clientServer.post("/createCart",{}, {
+                headers:{
+                    token: admin.token,
+                    productid: admin.productid
+                }
+            })
+            return thunkAPI.fulfillWithValue(response.data);
+        }catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+)
+
+export const DeleteCart = createAsyncThunk(
+    "/deletecart",
+    async (admin, thunkAPI) => {
+        try {
+            const response = await clientServer.delete("/deleteCart", {
+                headers: {
+                    token: admin.token,
+                    cartid: admin.cartid
+                }
+            })
+            return thunkAPI.fulfillWithValue(response.data);
+        }catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+)
+
+export const getadminOrders = createAsyncThunk(
+    "/getadminOrders",
+    async (admin, thunkAPI) => {
+        try {
+            const response = await clientServer.get("/getAdminOrder", {
+                headers: {
+                    token: admin.token
+                }
+            })
+            return thunkAPI.fulfillWithValue(response.data);
+        }catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+)
+
+export const productInfo = createAsyncThunk(
+    "/productInfo",
+    async (admin, thunkAPI) => {
+        try {
+            const response = await clientServer.get("/getProductInfo",{
+                headers: {
+                    Authorization: admin.token,
+                    productid: admin.productid
+                }
             });
-            return response.data; // Return the data you need
+            return thunkAPI.fulfillWithValue(response.data);
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.response.data); // Handle errors appropriately
+            return thunkAPI.rejectWithValue(error.response?.data || "An error occurred");
         }
     }
 );
 
-export const getProfilebyUsername  = createAsyncThunk(
-    "/admin/getprofilebyUsername",
-    async (username) => {
-        const response = await clientServer.get("/getProfileOnUsername", {
-            params: { username }
-        });
-
-        return response.data;
-
+export const createorder = createAsyncThunk(
+    "/CreateOrder",
+    async (admin, thunkAPI) => {
+        try {
+            const response = await clientServer.post("/createOrder", {},{
+                headers: {
+                    Authorization: admin.token,
+                    productid: admin.productid,
+                    name: admin.name,
+                    phone: admin.phone,
+                    pincode: admin.pinCode,
+                    address: admin.address,
+                }
+            })
+            return thunkAPI.fulfillWithValue(response.data);
+        }catch (err){
+            return thunkAPI.rejectWithValue(err.response.data);
+        }
     }
 )
+
+
+
+
+
+
+
+
+
+
+
+
+
+

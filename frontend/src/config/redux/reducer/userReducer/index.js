@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getprofilebyid, getUserInfo, loginUser, registerUser} from "@/config/redux/action/userAction";
+import {createProduct, Getuserorder, getuserProduct, loginUser, registerUser} from "@/config/redux/action/userAction";
 
 
 const initialState = {
@@ -10,7 +10,10 @@ const initialState = {
     isUserTokenThere: false,
     message:"",
     userProfileInfo:false,
-    InfoGet:false
+    InfoGet:false,
+    userProduct: {},
+    orderGet:false,
+    orderList:[],
 }
 
 const userSlice = createSlice({
@@ -58,40 +61,40 @@ const userSlice = createSlice({
                 state.isLoading = true;
                 state.message = "Loading...";
             })
-            .addCase(getUserInfo.pending, (state, action) => {
-                state.isLoading = false;
-                state.isError = false;
-                state.message = "Loading";
-            })
-            .addCase(getUserInfo.rejected, (state, action) => {
-                state.isLoading = false;
-                state.isError = true;
-                state.message = {message:"failed to fetch users"};
-            })
-            .addCase(getUserInfo.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.isError = false;
-                state.message = "Completed to fetch userInfo";
-                state.userProfileInfo = true;
-                state.userInfo = action.payload;
-            })
-            .addCase(getprofilebyid.rejected,(state, action)=>{
-                state.isLoading = false;
-                state.isError = true;
-                state.message = {message: "failed to fetch data"}
-            })
-            .addCase(getprofilebyid.pending,(state, action)=>{
-                state.isError = false;
+            .addCase(createProduct.pending, (state, action) => {
                 state.isLoading = true;
-                state.message= {message: "fetching the data"}
-            })
-            .addCase(getprofilebyid.fulfilled,(state, action)=>{
                 state.isError = false;
-                state.isLoading = false;
-                state.message = {message: "completed.."}
-                state.fetchedData = action.payload;
-                state.InfoGet = true
             })
+            .addCase(createProduct.fulfilled, (state, action) => {
+                state.isLoading = true;
+                state.isError = false;
+                state.isSuccess = true;
+                state.message = {message:"Products Registered"};
+            })
+            .addCase(getuserProduct.pending, (state, action) => {
+                state.isLoading = true;
+                state.isError = false;
+            })
+            .addCase(getuserProduct.fulfilled, (state, action) => {
+                state.isLoading = true;
+                state.isError = false;
+                state.isSuccess = true;
+                state.message = {message:"Got the product"};
+                state.InfoGet = true;
+                state.userProduct = action.payload;
+            })
+            .addCase(Getuserorder.pending, (state, action) => {
+                state.isLoading = true;
+                state.isError = false;
+            })
+            .addCase(Getuserorder.fulfilled, (state, action) => {
+                state.isLoading = true;
+                state.isError = false;
+                state.isSuccess = true;
+                state.orderGet = true;
+                state.orderList = action.payload;
+            })
+
     }
 })
 export const {reset, setuserTokenisThere,setuserTokenisNotThere} = userSlice.actions;

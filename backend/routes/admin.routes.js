@@ -2,10 +2,16 @@ import multer from 'multer';
 import express from 'express';
 const router = express.Router();
 import {
+    uploadProfilePicture,
+    getMyProfile,
+    updateProfileInfo,
     registerAdmin,
     loginAdmin,
-    uploadProfilePicture,
-    getMyProfile, updateProfileInfo, getAdminById, getProfileBasedOnUsername
+    createCart,
+    getCart,
+    deleteCart,
+    getAllProducts,
+    createOrder, getMyOrders, getProductInfo
 } from "../controllers/admin.controller.js";
 
 // Set up multer for file uploads
@@ -20,12 +26,17 @@ const storage = multer.diskStorage({
 const upload = multer({storage:storage});
 
 
-router.route("/register").post(registerAdmin);
-router.route("/login").post(loginAdmin);
+router.route("/registerAdmin").post(registerAdmin);
+router.route("/loginAdmin").post(loginAdmin);
 router.route("/get_My_Profile").get(getMyProfile);
 router.route("/uploadProfilePicture").post(upload.single('profile_picture'), uploadProfilePicture);
 router.route("/updateProfileInfo").post(updateProfileInfo);
-router.route("/getProfileOnUsername").get(getProfileBasedOnUsername);
-router.route("/getProfileById").get(getAdminById);
+router.route("/getAllProducts").get(getAllProducts);
+router.route("/createCart").post(createCart);
+router.route("/getCart").get(getCart);
+router.route("/deleteCart").delete(deleteCart);
+router.route("/createOrder").post(createOrder);
+router.route("/getAdminOrder").get(getMyOrders);
+router.route("/getProductInfo").get(getProductInfo);
 
 export default router;

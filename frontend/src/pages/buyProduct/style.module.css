@@ -1,0 +1,289 @@
+.mainContainer{
+    height: 90vh;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+.container{
+    width: 60%;
+}
+.product{
+    padding-top: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.product > div{
+    margin: 0.5rem;
+    width: 50%;
+    height: 80vh;
+    border: 1px solid white;
+}
+.imgContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+.productImg{
+    height: 200px;
+    width:  200px;
+    object-fit: cover;
+    transition: 0.3s;
+}
+.productImg:hover{
+    transition: 0.2s;
+    transform: scale(1.1);
+}
+.info{
+    padding-left: 2.5rem;
+}
+.description{
+    width: 80%;
+    height: 100%;
+    max-height: 300px;
+    background-color: black;
+    color: white;
+    border: none;
+    outline: none;
+    resize: none;
+}
+.price{
+    display: flex;
+    gap: 1rem;
+    font-size:2.5rem;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    align-items: center;
+}
+.list li{
+    margin: 1rem;
+}
+.btns{
+    display: flex;
+    padding-top: 2rem;
+}
+.btns > button{
+    margin: 0 2rem ;
+    height: 50px;
+    width: 80%;
+    border: 1px solid white;
+    background-color: black;
+    color: white;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+.btns > button:hover{
+    transition: 0.2s;
+    transform: scale(1.1);
+    background-color: whitesmoke;
+    color: black;
+}
+.formContainer > div{
+    display: grid;
+    align-items: center;
+    padding: 0.5rem;
+}
+.formContainer > div > input{
+    height: 40px;
+    padding: 0 1rem;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+/* I Phone 7 */
+@media (min-width: 0px) and (max-width: 320px) {
+    .mainContainer{
+        height: 100%;
+    }
+    .container{
+        width: 100%;
+    }
+    .product{
+        display: grid;
+    }
+    .product > div{
+        width: 100%;
+        margin: 0;
+        border: none;
+        height: 100%;
+    }
+    .price{
+        font-size: 1.5rem;
+    }
+    .info{
+        padding-left: 0.5rem;
+    }
+    .formContainer > div > input{
+        width: 80%;
+    }
+}
+/* NORMAL PHONE */
+@media (min-width: 321px) and (max-width: 375px) {
+    .mainContainer{
+        height: 100%;
+    }
+    .container{
+        width: 100%;
+    }
+    .imgContainer{
+        padding: 0;
+    }
+    .product{
+        display: grid;
+    }
+    .product > div{
+        width: 100%;
+        border: none;
+        height: 100%;
+    }
+    .productImg{
+        height: 250px;
+        width:  250px;
+    }
+    .price{
+        font-size: 1.5rem;
+    }
+    .info{
+        padding-left: 0.5rem;
+    }
+    .formContainer > div > input{
+        width: 80%;
+    }
+}
+/* I PHONE 13 ONE PLUS*/
+@media (min-width: 376px) and (max-width: 425px) {
+    .mainContainer{
+        height: 100%;
+    }
+    .container{
+        width: 100%;
+    }
+    .imgContainer{
+        padding: 0;
+    }
+    .product{
+        display: grid;
+    }
+    .product > div{
+        width: 100%;
+        border: none;
+        height: 100%;
+    }
+    .productImg{
+        height: 250px;
+        width:  250px;
+    }
+    .price{
+        font-size: 1.5rem;
+    }
+    .info{
+        padding-left: 0.5rem;
+    }
+    .formContainer > div > input{
+        width: 80%;
+    }
+}
+/* I PHONE 13 MAX */
+@media (min-width: 426px) and (max-width: 767px) {
+    .mainContainer{
+        height: 100%;
+    }
+    .container{
+        width: 100%;
+    }
+    .imgContainer{
+        padding: 0;
+    }
+    .product{
+        display: grid;
+    }
+    .product > div{
+        width: 100%;
+        border: none;
+        height: 100%;
+    }
+    .productImg{
+        height: 250px;
+        width:  250px;
+    }
+    .price{
+        font-size: 1.5rem;
+    }
+    .info{
+        padding-left: 0.5rem;
+    }
+    .formContainer > div > input{
+        width: 80%;
+    }
+}
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .mainContainer{
+        height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container{
+        width: 100%;
+    }
+    .imgContainer{
+        padding: 0;
+    }
+    .product > div{
+        width: 100%;
+        border: none;
+        height: 100%;
+    }
+    .productImg{
+        height: 250px;
+        width:  250px;
+    }
+    .price{
+        font-size: 1.5rem;
+    }
+    .info{
+        padding-left: 0.5rem;
+    }
+    .formContainer > div > input{
+        width: 80%;
+    }
+}
+/* Foldable Mobile */
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .mainContainer{
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container{
+        width: 80%;
+        padding-bottom: 2.5rem;
+    }
+    .imgContainer{
+        padding: 0;
+    }
+    .product > div{
+        width: 80%;
+        border: none;
+        height: 100%;
+    }
+    .productImg{
+        height: 250px;
+        width:  250px;
+    }
+    .price{
+        font-size: 1.5rem;
+    }
+    .info{
+        padding-left: 0.5rem;
+    }
+    .formContainer > div > input{
+        width: 80%;
+    }
+}
