@@ -11,6 +11,12 @@ export default function Cart(){
 
     const {cartFetched, fetchedCart} = useSelector((state)=> state.adminReducer);
 
+    useEffect(()=>{
+        if(!localStorage.getItem("token")){
+            router.push("/login");
+        }
+    },[])
+
     const dispatch = useDispatch();
     const router = useRouter();
 

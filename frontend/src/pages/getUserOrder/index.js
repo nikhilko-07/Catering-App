@@ -4,11 +4,19 @@ import style from "./style.module.css";
 import {useDispatch, useSelector} from "react-redux";
 import {changetheStatus, Getuserorder} from "@/config/redux/action/userAction";
 import {BASE_URL} from "@/config";
+import {useRouter} from "next/router";
 
 export default function getUserorder(){
 
+    const router = useRouter();
     const dispatch = useDispatch();
     const {orderGet, orderList} = useSelector((state)=> state.userReducer)
+
+    useEffect(()=>{
+        if(!localStorage.getItem("usertoken")){
+            router.push("/userLogin");
+        }
+    },[])
 
     useEffect(() => {
         dispatch(Getuserorder({

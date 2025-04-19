@@ -2,8 +2,13 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/UserDashboard": "pages/UserDashboard.js",
+  "/userLogin": "pages/userLogin.js",
+  "/getUserOrder": "pages/getUserOrder.js",
   "/": "pages/index.js",
-  "/Cart": "pages/Cart.js",
+  "/login": "pages/login.js",
   "/Dashboard": "pages/Dashboard.js",
+  "/profile": "pages/profile.js",
+  "/Cart": "pages/Cart.js",
   "/Orders": "pages/Orders.js"
 }

@@ -4,14 +4,23 @@ import style from "./style.module.css";
 import {useDispatch, useSelector} from "react-redux";
 import {getadminOrders} from "@/config/redux/action/adminAction";
 import {BASE_URL} from "@/config";
+import {useRouter} from "next/router";
 
 export default function Cart(){
 
+    const router = useRouter();
     const {ordersFetched, fetchedOrders} = useSelector((state)=> state.adminReducer);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getadminOrders({token: localStorage.getItem("token")}));
     },[])
+
+    useEffect(()=>{
+        if(!localStorage.getItem("token")){
+            router.push("/login");
+        }
+    },[])
+
 
     return (<>
     <AdminLayout>

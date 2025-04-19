@@ -9,9 +9,11 @@ import {
     updateProfileAdminInfo,
     updateProfilePicture
 } from "@/config/redux/action/adminAction";
+import {useRouter} from "next/router";
 
 
 export default function Profile() {
+    const router = useRouter();
     const [address, setAddress] = useState("");
     const [bio, setBio] = useState("");
     const [mobile, setMobile] = useState("");
@@ -19,6 +21,12 @@ export default function Profile() {
 
     const dispatch = useDispatch();
     const adminReducer = useSelector((state) => state.adminReducer);
+
+    useEffect(()=>{
+        if(!localStorage.getItem("token")){
+            router.push("/login");
+        }
+    },[])
 
     useEffect(() => {
         dispatch(getOwnProfile({ token: localStorage.getItem("token") }));
